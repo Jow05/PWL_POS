@@ -10,83 +10,48 @@ class UserController extends Controller
 {
     public function index()
     {
-        $userCount = UserModel::where('level_id', 2)->count(); // Count users with level_id 2
-        $data = $userCount;
-        return view('user', ['data' => $data]);
+        $user = UserModel::create([
+                'username' => 'manager11',
+                'nama' => 'Manager11',
+                'password' => Hash::make('12345'),
+                'level_id' => 2,
+            ]);
+        
+        $user->username = 'manager12';
 
-        /*step 1
-        $user = UserModel::where('level_id', 2)->count();
-        dd($user);
-        return view('user', ['data' => $user]);*/
+        $user->save();
+
+        $user->wasChanged();//true
+        $user->wasChanged('username');//true
+        $user->wasChanged('username', 'level_id');//true
+        $user->wasChanged('nama');//false
+        $user->wasChanged('nama', 'username');//true
+        dd($user->wasChanged(['nama', 'username'])); //true
     }
 }
+/*
+//step 1
+$user = UserModel::firstOrCreate(
+            [
+                'username' => 'manager',
+                'nama' => 'Manager',
+            ],
+            );
+            return view('user',['data' => $user]);
+ //step  6         
+$user = UserModel::firstOrNew(
+    [
+        'username' => 'manager',
+        'nama' => 'Manager',
+    ],
+    );
+    step 8
+    $user = UserModel::firstOrNew(
+            [
+                'username' => 'manager33',
+                'nama' => 'Manager Tiga Tiga',
+                'password' => Hash::make('12345'),
+                'level_id' => 2
+            ],*/
 
 
-
-/* Jobsheet 4
-//prac 2.2
-step 3
-$user = UserModel::where('username', 'manager9')->firstOrFail();
-        return view('user', ['data' => $user]);
-step 1
-$user = UserModel::findOrFail(1);
-        return view('user', ['data' => $user]);
-//Prac 2.1
-Step 10
-        $user = UserModel::findOr(20, ['username', 'nama'], function () {
-            abort(404);
-        });
-        return view('user', ['data' => $user]);
-
-        /*Step 8
-        $user = UserModel::findor(1, ['username', 'nama'], function () {
-            abort(404);
-        });
-        return view('user', ['data' => $user]);*/
-
-        /*Step 6
-        $user = UserModel::firstWhere('level_id', 1);
-        return view('user', ['data' => $user]);*/
-
-        /*Step 4
-        $user = UserModel::where('level_id',1)->first();
-        return view('user', ['data' => $user]);*/
-        
-        /*Step 1
-        $user = UserModel::find(1);
-        return view('user', ['data' => $user]);
-$data = [
-    'level_id' => 2,
-    'username' => 'manager_dua',
-    'nama' => 'Manager 2',
-    'password' => Hash::make('12345')
-];
-$data = [
-    'level_id' => 2,
-    'username'=> 'manager_tiga',
-    'nama' => 'Manager 3',
-    'password' => Hash::make('12345')
-];
-UserModel::create($data);
-
-$user = UserModel::all();
-return view('user', ['data' => $user]);
-
-Jobsheet 3
-        /tambah data user dengan Eloquent Model
-        $data = [
-            'nama' => 'Pelanggan Pertama',
-        ];
-        UserModel::where('username', 'customer-1')->update($data); //update data user
-        $data = [
-            'username' => 'customer-1',
-            'nama' => 'Pelanggan',
-            'password' => Hash::make('12345'),
-            'level_id' => 4
-        ];
-        UserModel::insert($data); //tambahkan data ke tabel m_user
-        
-        //coba akses model usermodel
-        $user = UserModel::all(); //ambil semua data dari tabel m_user
-        return view('user', ['data' => $user]);*/
-    
