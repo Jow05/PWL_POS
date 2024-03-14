@@ -10,7 +10,17 @@ class UserController extends Controller
 {
     public function index()
     {
-        //Step 10
+        $user = UserModel::where('username', 'manager9')->firstOrFail();
+        return view('user', ['data' => $user]);
+    }
+}
+/* Jobsheet 4
+//prac 2.2
+step 1
+$user = UserModel::findOrFail(1);
+        return view('user', ['data' => $user]);
+//Prac 2.1
+Step 10
         $user = UserModel::findOr(20, ['username', 'nama'], function () {
             abort(404);
         });
@@ -32,10 +42,7 @@ class UserController extends Controller
         
         /*Step 1
         $user = UserModel::find(1);
-        return view('user', ['data' => $user]);*/
-    }
-}
-/* Jobsheet 4
+        return view('user', ['data' => $user]);
 $data = [
     'level_id' => 2,
     'username' => 'manager_dua',
