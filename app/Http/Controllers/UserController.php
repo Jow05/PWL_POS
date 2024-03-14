@@ -10,6 +10,11 @@ class UserController extends Controller
 {
     public function index()
     {
+        //Prac 2.7
+        $user = UserModel::with('level')->get();
+        return view('user', ['data' => $user]);
+
+        //Prac 2.6
         $user = UserModel::all();
         return view('user', ['data'=>$user]);
         
