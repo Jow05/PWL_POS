@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+user.blade class<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,18 +9,15 @@
 <body>
     <h1>Data User</h1>
     <table border="1" cellpadding="2" cellspacing="0">
+</head>
+<body>
         <tr>
-            <th>ID</th>
-            <th>Nama</th>
-            <th>ID Level Pengguna</th>
+            <th>Jumlah Pengguna</th>
         </tr>
         <tr>
-            <td>{{ $data->user_id }}</td>
-            <td>{{ $data->username }}</td>
-            <td>{{ $data->nama }}</td>
-            <td>{{ $data->level_id }}</td>
+            <td>{{ $data }}</td>
         </tr>
-        
+
     </table>
 </body>
 </html>
