@@ -23,6 +23,7 @@ class KategoriController extends Controller
         ]);
         return redirect('/kategori');
     }
+    
 }
 
 

@@ -573,4 +573,5 @@ return [
     */
 
     'livewire' => false,
+    
 ];
