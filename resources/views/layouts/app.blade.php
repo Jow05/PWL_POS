@@ -82,7 +82,6 @@ href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.css"/>
     }
 </style>
 @endpush
-
 {{-- Navigation menu for categories --}}
 @section('sidebar-menu')
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">

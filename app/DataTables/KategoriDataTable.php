@@ -70,5 +70,4 @@ return [
     {
         return 'Kategori_' . date('YmdHis');
     }
-    
 }

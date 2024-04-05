@@ -30,7 +30,6 @@ Route::get('/', function () {
 Route::get('/level', [LevelController::class, 'index']);
 Route::get('/kategori', [KategoriController::class, 'index']);
 Route::get('/user', [UserController::class, 'index']);
-
 //Practicum 2.6
 Route::get('/user/tambah', [UserController::class, 'tambah'])->name('user/tambah');
 Route::get('/user/ubah/{id}', [UserController::class, 'ubah'])->name('/user/ubah');

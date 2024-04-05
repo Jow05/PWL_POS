@@ -18,7 +18,6 @@
     <button type="submit" class="btn btn-danger">Delete</button>
 </form>
 
-
         <tr>
             <th>ID</th>
             <th>Kode Kategori</th>
