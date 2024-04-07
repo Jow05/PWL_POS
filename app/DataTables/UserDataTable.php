@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\KategoriModel;
+use App\Models\UserModel;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,35 +12,29 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class KategoriDataTable extends DataTable
+class UserDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
      *
      * @param QueryBuilder $query Results from query() method.
      */
-    public function dataTable(QueryBuilder $query): EloquentDataTable
-    {
-        // return (new EloquentDataTable($query))
-/*            ->addColumn('action', 'kategori.action')*/
-
-        //Tambahkan action edit di datatables dan buat halaman edit serta controllernya
-        //Tambahkan action delete di datatables serta controllernya
-        return (new EloquentDataTable($query))
-        ->addColumn('action', function($row) {
-            return '<a href="kategori/edit/'.$row->kategori_id.'" class="btn btn-primary">Edit</a>
-                    <a href="kategori/delete/'.$row->kategori_id.'" class="btn btn-danger">Delete</a>';
-        })
-        ->setRowId('id');
-    }
+    public function dataTable(QueryBuilder $query): EloquentDataTable 
+    {     
+                return (new EloquentDataTable($query))
+                ->addColumn('action', function($row) {
+                    return '<a href="user/edit/'.$row->user_id.'" class="btn btn-primary">Edit</a>
+                            <a href="user/delete/'.$row->user_id.'" class="btn btn-danger">Delete</a>';
+                })
+                ->setRowId('id');
+    } 
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(KategoriModel $model): QueryBuilder
-    {
-        return $model->newQuery();
-    }
+    public function query(UserModel $model): QueryBuilder 
+    {         return $model->newQuery(); 
+    } 
 
     /**
      * Optional method if you want to use the html builder.
@@ -48,7 +42,7 @@ class KategoriDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('kategori-table')
+                    ->setTableId('user-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -70,24 +64,20 @@ class KategoriDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(90)
-                  ->addClass('text-center'),
-            Column::make('category_id'),
-            Column::make('category_kode'),
-            Column::make('category_nama'),
+            Column::make('user_id'),
+            Column::make('username'),
+            Column::make('nama'),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::make('action')
         ];
     }
+
     /**
      * Get the filename for export.
      */
     protected function filename(): string
     {
-        return 'Kategori_' . date('YmdHis');
+        return 'User_' . date('YmdHis');
     }
 }
