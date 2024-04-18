@@ -52,3 +52,5 @@ Route::get('level/create', [LevelController::class, 'create'])->name('/level/cre
 Route::post('/level', [LevelController::class, 'store']);
 
 Route::resource('m_user', POSController::class);
+//Jobsheet 7
+Route::get('/', [WelcomeController::class, 'index' ]);
