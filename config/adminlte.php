@@ -333,6 +333,12 @@ return [
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
+        //Tambahkan menu untuk halaman manage kategori, di daftar menu navbar
+        [
+            'text' => 'Kategori',
+            'url' => '/kategori',
+            'icon' => 'fas fa-fw fa-list',
+        ],
         [
             'text' => 'multilevel',
             'icon' => 'fas fa-fw fa-share',
@@ -371,12 +377,6 @@ return [
                 ],
             ],
         ],
-        //Tambahkan menu untuk halaman manage kategori, di daftar menu navbar
-        [
-            'text' => 'Kategori',
-            'url' => '/kategori',
-            'icon' => 'fas fa-fw fa-list',
-        ],
         ['header' => 'labels'],
         [
             'text' => 'important',
@@ -394,31 +394,6 @@ return [
             'url' => '#',
         ],
     ],
-    //Tambahkan menu untuk halaman manage kategori, di daftar menu navbar
-    [
-        'text' => 'Kategori',
-        'url' => '/kategori',
-        'icon' => 'fas fa-fw fa-list',
-    ],
-    ['header' => 'labels'],
-    [
-        'text' => 'important',
-        'icon_color' => 'red',
-        'url' => '#',
-    ],
-    [
-        'text' => 'warning',
-        'icon_color' => 'yellow',
-        'url' => '#',
-    ],
-    [
-        'text' => 'information',
-        'icon_color' => 'cyan',
-        'url' => '#',
-    ],
-
-// Konfigurasi setelahnya...
-
 
     /*
     |--------------------------------------------------------------------------
@@ -559,6 +534,7 @@ return [
             'use_navbar_items' => true,
         ],
     ],
+
     /*
     |--------------------------------------------------------------------------
     | Livewire

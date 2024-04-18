@@ -28,8 +28,8 @@ class KategoriDataTable extends DataTable
         //Tambahkan action delete di datatables serta controllernya
         return (new EloquentDataTable($query))
         ->addColumn('action', function($row) {
-            return '<a href="kategori/edit/'.$row->kategori_id.'" class="btn btn-primary">Edit</a>
-                    <a href="kategori/delete/'.$row->kategori_id.'" class="btn btn-danger">Delete</a>';
+            return '<a href="kategori/edit/'.$row->category_id.'" class="btn btn-primary">Edit</a>
+                    <a href="kategori/delete/'.$row->category_id.'" class="btn btn-danger">Delete</a>';
         })
         ->setRowId('id');
     }

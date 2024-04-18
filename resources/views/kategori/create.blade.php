@@ -1,78 +1,47 @@
-@extends('layout.app')
+@extends('layouts.app')
 
-@section('subtitle', 'kategori')
-@section('content_header_title', 'kategori')
+{{-- Customize layout section --}}
+@section('subtitle', 'Kategori')
+@section('content_header_title', 'Kategori')
 @section('content_header_subtitle', 'Create')
 
+{{-- Content body: main page content --}}
 @section('content')
     <div class="container">
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Buat kategori baru</h3>
+                <h3 class="card-title">Buat Kategori Baru</h3>
             </div>
 
-            <form method="post" action="../kategori">
-                @csrf
+            <form method="POST" action="../kategori">
                 <div class="card-body">
                     <div class="form-group">
                         <label for="kodeKategori">Kode Kategori</label>
-                        <input type="text" class="form-control" id="kodeKategori" name="kodeKategori" placeholder="Enter Kode Kategori">
+                        <input type="text" class="form-control @error('kategori_kode') is-invalid @enderror" name="kategori_kode" id="kodeKategori" placeholder="KodeKategori">
+                        @error('kategori_kode')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="namaKategori">Nama Kategori</label>
-                        <input type="text" class="form-control" id="namaKategori" name="namaKategori" placeholder="Enter Nama Kategori">
+                        <input type="text" class="form-control" id="namaKategori" name="kategori_nama" placeholder="Masukkan nama kategori">
                     </div>
                 </div>
-                @extends('layouts.app')
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        Manage Kategori
-                        <a href="{{ route('kategori.create') }}" class="btn btn-success float-right">Add</a>
-                    </div>
-                    <div class="card-body">
-                        <!-- Tambahkan tabel atau konten lainnya di sini -->
-                        <!-- Contoh tombol delete dan update di dalam tabel -->
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nama Kategori</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($categories as $category)
-                                    <tr>
-                                        <td>{{ $category->id }}</td>
-                                        <td>{{ $category->name }}</td>
-                                        <td>
-                                            <!-- Tombol update -->
-                                            <a href="{{ route('kategori.edit', $category->id) }}" class="btn btn-primary">Update</a>
-                                            <!-- Tombol delete dengan konfirmasi -->
-                                            <form action="{{ route('kategori.delete', $category->id) }}" method="POST" style="display: inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
             </form>
         </div>
     </div>
+    
 @endsection
