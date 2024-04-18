@@ -54,24 +54,27 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{ url('/item') }}" class="nav-link {{ ($activeMenu == 'item')? 'active' : '' }}>
-                <i class="nav-icon far fa-list-alt"></i>
-                <p>Goods Data</p>
-            </a>
+    <a href="{{ url('/item') }}" class="nav-link {{ ($activeMenu == 'item')? 'active' : '' }}">
+        <i class="nav-icon far fa-list-alt"></i> <!-- Ikon untuk "Goods Data" -->
+        <p>Goods Data</p>
+    </a>
+</li>
         </li>
         <li class="nav-header">Data Transaksi</li>
         <li class="nav-item">
-            <a href="{{ url('/stok') }}" class="nav-link {{ ($activeMenu == 'stok')? 'active' : '' }}>
-                <i class="nav-icon far fa-cubes"></i>
-                <p>Stock of Goods</p>
-            </a> 
-        </li>
-        <li class="nav-item">
-            <a href="{{ url('/item') }}" class="nav-link {{ ($activeMenu == 'sales')? 'active' : '' }}>
-                <i class="nav-icon far fa-cash-register"></i>
-                <p>Transaction</p>
-            </a>
-        </li>
+        <a href="{{ url('/stok') }}" class="nav-link {{ ($activeMenu == 'stok') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-cubes"></i>
+        <p>Stock of Goods</p>
+    
+    
+</a> 
+</li>
+<li class="nav-item">
+<a href="{{ url('/item') }}" class="nav-link {{ ($activeMenu == 'sales') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-cash-register"></i>
+        <p>Transaction</p>
+    </a>
+</li>
     </ul>
     </nav>
     <!-- /.sidebar-menu -->
