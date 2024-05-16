@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Data Kategori Barang</title>
+    <title>Data Level Pengguna</title>
 </head>
 <body>
-    <h1>Data Kategori Barang</h1>
+    <h1>Data Level Pengguna</h1>
     <table border="1" cellpadding="2" cellspacing="0">
         <tr>
             <th>ID</th>
-            <th>Kode Kategori</th> 
-            <th>Nama Kategori</th>
+            <th>Kode Level</th>
+            <th>Nama Level</th>
         </tr>
         @foreach ($data as $d)
         <tr>
-            <td>{{ $d->kategori_id }}</td>
-            <td>{{ $d->kategori_kode }}</td>
-            <td>{{ $d->kategori_nama }}</td>
+            <td>{{ $d->level_id}}</td>
+            <td>{{ $d->level_kode}}</td>
+            <td>{{ $d->level_nama}}</td>
         </tr>
         @endforeach
     </table>
 </body>
 </html>
 
-//The kategori.blade.php will display the category table web page retrieved from the m_category data by using the 'view' command in the KategoriController.
+//At level.blade.php will display the m_level table data web page with the 'view' command in LevelController

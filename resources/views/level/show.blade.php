@@ -7,27 +7,27 @@
         <div class="card-tools"></div> 
       </div> 
       <div class="card-body"> 
-        @empty($kategori) 
+        @empty($level) 
             <div class="alert alert-danger alert-dismissible"> 
                 <h5><i class="icon fas fa-ban"></i> Kesalahan!</h5> Data yang Anda cari tidak ditemukan. 
             </div> 
         @else 
             <table class="table table-bordered table-striped table-hover table-sm"> 
                 <tr> 
-                    <th>Kategori ID</th> 
-                    <td>{{ $kategori->category_id }}</td> 
+                    <th>Level ID</th> 
+                    <td>{{ $level->level_id }}</td> 
                 </tr> 
                 <tr> 
-                    <th>Kode Kategori</th> 
-                    <td>{{ $kategori->category_kode }}</td> 
+                    <th>Kode Level</th> 
+                    <td>{{ $level->level_kode }}</td> 
                 </tr> 
                 <tr> 
-                    <th>Nama Kategori</th> 
-                    <td>{{ $kategori->category_nama }}</td> 
+                    <th>Nama Level</th> 
+                    <td>{{ $level->level_nama }}</td> 
                 </tr> 
             </table> 
         @endempty 
-        <a href="{{ url('category') }}" class="btn btn-sm btn-default mt-2">Kembali</a> 
+        <a href="{{ url('level') }}" class="btn btn-sm btn-default mt-2">Kembali</a> 
     </div> 
   </div> 
 @endsection 
