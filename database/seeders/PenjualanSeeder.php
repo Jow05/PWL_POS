@@ -14,13 +14,13 @@ class PenjualanSeeder extends Seeder
      */
     public function run(): void
     {
-        //define 10 item stock 
+        //define 10 item stok 
         $data = [];
 
-        //define datetime stock
+        //define datetime stok
         $datetime = Carbon::now();
 
-        //generate random stock setiap barang
+        //generate random stok setiap barang
         $userID = DB::table('m_user')->pluck('user_id')->toArray();
 
         for ($i = 0; $i < 10; $i++){

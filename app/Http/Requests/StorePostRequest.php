@@ -23,8 +23,8 @@ class StorePostRequest extends FormRequest
     {
         return [
             //kategori
-            'category_kode' => 'required',
-            'category_nama' => 'required',
+            'kategori_kode' => 'required',
+            'kategori_nama' => 'required',
 
             //user
             'username' => 'required',

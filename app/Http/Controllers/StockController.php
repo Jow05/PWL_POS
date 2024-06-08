@@ -70,15 +70,15 @@ class StockController extends Controller
         $request->validate([
             'barang_id' => 'required|integer',
             'user_id' => 'required|integer',
-            'stock_tanggal' => 'required|date',
-            'stock_jumlah' => 'required|integer',
+            'stok_tanggal' => 'required|date',
+            'stok_jumlah' => 'required|integer',
         ]);
 
         StokModel::create([
             'barang_id' => $request->barang_id,
             'user_id' => $request->user_id,
-            'stock_tanggal' => $request->stock_tanggal,
-            'stock_jumlah' => $request->stock_jumlah,
+            'stok_tanggal' => $request->stok_tanggal,
+            'stok_jumlah' => $request->stok_jumlah,
         ]);
 
         return redirect('/stok')->with('success', 'Data barang berhasil disimpan');
@@ -109,15 +109,15 @@ class StockController extends Controller
         $request->validate([
             'barang_id' => 'required|integer',
             'user_id' => 'required|integer',
-            'stock_tanggal' => 'required|datetime',
-            'stock_jumlah' => 'required|integer',
+            'stok_tanggal' => 'required|datetime',
+            'stok_jumlah' => 'required|integer',
         ]);
 
         BarangModel::find($id)->update([
             'barang_id' => $request->barang_id,
             'user_id' => $request->user_id,
-            'stock_tanggal' => $request->stock_tanggal,
-            'stock_jumlah' => $request->stock_jumlah
+            'stok_tanggal' => $request->stok_tanggal,
+            'stok_jumlah' => $request->stok_jumlah
         ]);
 
         return redirect('/stok')->with('success', 'Data stok berhasil diubah');
@@ -140,14 +140,14 @@ class StockController extends Controller
 
     public function list(Request $request)
     {
-        $stoks = StokModel::select('stock_id' ,'barang_id', 'user_id', 'stock_tanggal', 'stock_jumlah')->with('barang','user');
+        $stoks = StokModel::select('stok_id' ,'barang_id', 'user_id', 'stok_tanggal', 'stok_jumlah')->with('barang','user');
 
         return DataTables::of($stoks)
         ->addIndexColumn()
         ->addColumn('aksi', function ($stok) {
-            $btn = '<a href="'.url('/stok/' . $stok->stock_id).'" class="btn btn-info btn-sm">Detail</a> ';
-            $btn .= '<a href="' . url('/stok/' . $stok->stock_id . '/edit' ) . '" class="btn btn-warning btn-sm">Edit</a> ';
-            $btn .= '<form class="d-inline-block" method="POST" action="'. url('/stok/'.$stok->stock_id).'">'.
+            $btn = '<a href="'.url('/stok/' . $stok->stok_id).'" class="btn btn-info btn-sm">Detail</a> ';
+            $btn .= '<a href="' . url('/stok/' . $stok->stok_id . '/edit' ) . '" class="btn btn-warning btn-sm">Edit</a> ';
+            $btn .= '<form class="d-inline-block" method="POST" action="'. url('/stok/'.$stok->stok_id).'">'.
             csrf_field() . method_field('DELETE') .
             '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakin menghapus data ini?\');">Hapus</button></form>';
             return $btn;

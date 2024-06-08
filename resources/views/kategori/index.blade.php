@@ -23,7 +23,7 @@
                         <select class="form-control" name="level_id" id="level_id" required>
                             <option value="">- Semua -</option>
                             @foreach($kategori as $item)
-                                <option value="{{ $item->category_id }}">{{ $item->category_nama }}</option>
+                                <option value="{{ $item->kategori_id }}">{{ $item->kategori_nama }}</option>
                             @endforeach
                         </select>
                         <small class="form-text text-muted">Kategori Barang</small>
@@ -58,7 +58,7 @@
                     "dataType": "json",
                     "type": "POST",
                     "data": function(d){
-                        d.category_id = $('#kategori_id').val();
+                        d.kategori_id = $('#kategori_id').val();
                     }
                 },
                 columns: [
@@ -68,12 +68,12 @@
                         orderable: false,
                         searchable: false
                     },{
-                        data: "category_kode",
+                        data: "kategori_kode",
                         className: "",
                         orderable: true,    // orderable: true, jika ingin kolom ini bisa diurutkan
                         searchable: true    // searchable: true, jika ingin kolom ini bisa dicari
                     },{
-                        data: "category_nama",
+                        data: "kategori_nama",
                         className: "",
                         orderable: true,
                         searchable: true

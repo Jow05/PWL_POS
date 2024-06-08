@@ -10,6 +10,7 @@ use App\DataTables\KategoriDataTable;
 use App\Models\KategoriModel;
 use App\Models\BarangModel;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Validator;
 
 class BarangController extends Controller
 {
@@ -29,7 +30,7 @@ class BarangController extends Controller
 
         $kategori = KategoriModel::all();
 
-        return view('stok.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kategori' => $kategori, 'activeMenu' => $activeMenu]);
+        return view('barang.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kategori' => $kategori, 'activeMenu' => $activeMenu]);
 
     }
     public function show(string $id)
@@ -46,7 +47,7 @@ class BarangController extends Controller
 
         $activeMenu = 'barang';
 
-        return view('stok.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'barang' => $barang, 'activeMenu' => $activeMenu]);
+        return view('barang.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'barang' => $barang, 'activeMenu' => $activeMenu]);
     }
 
     public function create(){
@@ -62,28 +63,34 @@ class BarangController extends Controller
         $kategori = KategoriModel::all();
         $activeMenu = 'barang';
 
-        return view('stok.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kategori' => $kategori, 'activeMenu' => $activeMenu]);
+        return view('barang.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kategori' => $kategori, 'activeMenu' => $activeMenu]);
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'category_id' => 'required|integer',
-            'category_kode' => 'required|string|max:10|unique:m_barang,barang_kode',
+            'kategori_id' => 'required|integer',
+            'barang_kode' => 'required|string|max:10|unique:m_barang,barang_kode',
             'barang_nama' => 'required|string|max:100',
             'harga_beli' => 'required|integer',
-            'harga_jual' => 'required|integer'
+            'harga_jual' => 'required|integer',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
-        BarangModel::create([
-            'category_id' => $request->category_id,
+        $barang = BarangModel::create([
+            'kategori_id' => $request->kategori_id,
             'barang_kode' => $request->barang_kode,
             'barang_nama' => $request->barang_nama,
             'harga_beli' => $request->harga_beli,
-            'harga_jual' => $request->harga_jual
+            'harga_jual' => $request->harga_jual,
+            'image' => $request->image->hashName(),
         ]);
-
-        return redirect('/barang')->with('success', 'Data barang berhasil disimpan');
+        if($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = $request->image->hashName();
+            $image->move(public_path('posts'), $imageName);
+        }
+        return response()->json($barang, 201);
     }
 
     public function edit(string $id)
@@ -102,28 +109,41 @@ class BarangController extends Controller
 
         $activeMenu = 'barang';
 
-        return view('stok.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'barang' => $barang, 'kategori' => $kategori, 'activeMenu' => $activeMenu]);
+        return view('barang.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'barang' => $barang, 'kategori' => $kategori, 'activeMenu' => $activeMenu]);
     }
 
-    public function update(Request $request, string $id)
-{
-    $request->validate([
-        'barang_kode' => 'required|string|max:10|unique:m_barang,barang_kode,'.$id.',barang_id',
-        'barang_nama' => 'required|string|max:100',
-        'harga_beli' => 'required|integer',
-        'harga_jual' => 'required|integer',
-        'category_id' => 'required|integer'
-    ]);
+    public function update(Request $request, string $barang_id)
+    {
+        $barang = BarangModel::find($barang_id);
+        if($request->filled('image')) {
+            $barang->update(['image' => $request->image->hashName()]);
+            if($request->hasFile('image')){
+                $image = $request->file('image');
+                $imageName = $request->image->hashName();
+                $image->move(public_path('posts'), $imageName);
+            }
+            $barang->update($request->except('image'));
+        } else {
+            $barang->update($request->all());
+        }
+        return BarangModel::find($barang_id);
+        // $request->validate([
+        //     'barang_kode' => 'required|string|max:10|unique:m_barang,barang_kode,'.$id.',barang_id',
+        //     'barang_nama' => 'required|string|max:100',
+        //     'harga_beli' => 'required|integer',
+        //     'harga_jual' => 'required|integer',
+        //     'kategori_id' => 'required|integer'
+        // ]);
 
-    BarangModel::find($id)->update([
-        'barang_kode' => $request->barang_kode,
-        'barang_nama' => $request->barang_nama,
-        'harga_beli' => $request->harga_beli,
-        'harga_jual' => $request->harga_jual,
-        'category_id' => $request->category_id // tambahkan $request->category_id di sini
-    ]);
+        // BarangModel::find($id)->update([
+        //     'barang_kode' => $request->barang_kode,
+        //     'barang_nama' => $request->barang_nama,
+        //     'harga_beli' => $request->harga_beli,
+        //     'harga_jual' => $request->harga_jual,
+        //     'kategori_id' => $request->kategori_id
+        // ]);
 
-    return redirect('/barang')->with('success', 'Data barang berhasil diubah');
+        // return redirect('/barang')->with('success', 'Data barang berhasil diubah');
     }
 
     public function destroy(string $id)
@@ -143,10 +163,10 @@ class BarangController extends Controller
 
     public function list(Request $request)
     {
-        $barangs = BarangModel::select('barang_id', 'category_id', 'barang_kode', 'barang_nama', 'harga_beli', 'harga_jual')->with('kategori');
+        $barangs = BarangModel::select('barang_id', 'kategori_id', 'barang_kode', 'barang_nama', 'harga_beli', 'harga_jual')->with('kategori');
 
-        if($request->category_id){
-            $barangs->where('category_id', $request->category_id);
+        if($request->kategori_id){
+            $barangs->where('kategori_id', $request->kategori_id);
         }
 
         return DataTables::of($barangs)

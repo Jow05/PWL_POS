@@ -1,4 +1,4 @@
-@extends('layout.template')
+@extends('layouts.template')
 
 @section('content')
     <div class="card card-outline card-primary">
@@ -7,7 +7,7 @@
             <div class="card-tools"></div>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ url('stock') }}" class="form-horizontal">
+            <form method="POST" action="{{ url('stok') }}" class="form-horizontal">
             @csrf
             <div class="form-group row">
                 <label class="col-1 control-label col-form-label">Barang</label>
@@ -38,19 +38,19 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-1 control-label col-form-label">Tanggal Stock</label>
+                <label class="col-1 control-label col-form-label">Tanggal Stok</label>
                 <div class="col-11">
-                    <input type="datetime" class="form-control" id="stock_tanggal" name="stock_tanggal" value="{{ old('stock_tanggal') }}" required>
-                    @error('stock_tanggal')
+                    <input type="datetime-local" class="form-control" id="stok_tanggal" name="stok_tanggal" value="{{ old('stok_tanggal') }}" required>
+                    @error('stok_tanggal')
                         <small class="form-text text-danger">{{ $message }}</small>
                     @enderror
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-1 control-label col-form-label">Jumlah Stock</label>
+                <label class="col-1 control-label col-form-label">Jumlah Stok</label>
                 <div class="col-11">
-                    <input type="number" name="stock_jumlah" id="stock_jumlah" class="form-control" value="{{ old('stock_jumlah')}}" required>
-                    @error('stock_jumlah')
+                    <input type="number" name="stok_jumlah" id="stok_jumlah" class="form-control" value="{{ old('stok_jumlah')}}" required>
+                    @error('stok_jumlah')
                         <small class="form-text text-danger">{{ $message }}</small>
                     @enderror
                 </div>
@@ -59,7 +59,7 @@
                 <label class="col-1 control-label col-form-label"></label>
                 <div class="col-11">
                     <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
-                    <a class="btn btn-sm btn-default ml-1" href="{{ url('stock') }}">Kembali</a>
+                    <a class="btn btn-sm btn-default ml-1" href="{{ url('stok') }}">Kembali</a>
                 </div>
             </div>
             </form>

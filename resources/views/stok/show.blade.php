@@ -1,4 +1,3 @@
-
 @extends('layouts.template') 
 
 @section('content') 
@@ -8,7 +7,7 @@
         <div class="card-tools"></div> 
       </div> 
       <div class="card-body"> 
-        @empty($stock) 
+        @empty($stok) 
             <div class="alert alert-danger alert-dismissible"> 
                 <h5><i class="icon fas fa-ban"></i> Kesalahan!</h5>                 Data yang Anda cari tidak ditemukan. 
             </div> 
@@ -16,23 +15,23 @@
             <table class="table table-bordered table-striped table-hover table-sm">  
                 <tr> 
                     <th>Nama Barang</th> 
-                    <td>{{ $stock->barang->barang_nama }}</td> 
+                    <td>{{ $stok->barang->barang_nama }}</td> 
                 </tr> 
                 <tr> 
                     <th>Nama user</th> 
-                    <td>{{ $stock->user->nama }}</td> 
+                    <td>{{ $stok->user->nama }}</td> 
                 </tr> 
                 <tr> 
-                    <th>Tanggal Stock</th> 
-                    <td>{{ $stock->stock_tanggal }}</td> 
+                    <th>Tanggal Stok</th> 
+                    <td>{{ $stok->stok_tanggal }}</td> 
                 </tr> 
                 <tr> 
-                    <th>Jumlah Stock</th> 
-                    <td>{{ $stock->stock_jumlah }}</td> 
+                    <th>Jumlah Stok</th> 
+                    <td>{{ $stok->stok_jumlah }}</td> 
                 </tr> 
             </table> 
         @endempty 
-        <a href="{{ url('stock') }}" class="btn btn-sm btn-default mt-2">Kembali</a> 
+        <a href="{{ url('stok') }}" class="btn btn-sm btn-default mt-2">Kembali</a> 
     </div> 
   </div> 
 @endsection 

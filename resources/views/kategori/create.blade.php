@@ -19,12 +19,12 @@
       @csrf
       <div class="card-body">
         <div class="form-group">
-          <label for="category_kode">Category Kode</label>
-          <input type="text" class="form-control" id="category_kode" name="category_kode" placeholder="Masukkan Category Kode">
+          <label for="kategori_kode">Category Kode</label>
+          <input type="text" class="form-control" id="kategori_kode" name="kategori_kode" placeholder="Masukkan Category Kode">
         </div>
         <div class="form-group">
-          <label for="category_nama">Level Nama</label>
-          <input type="text" class="form-control" id="category_nama" name="category_nama" placeholder="Masukkan Nama category">
+          <label for="kategori_nama">Level Nama</label>
+          <input type="text" class="form-control" id="kategori_nama" name="kategori_nama" placeholder="Masukkan Nama category">
         </div>
       </div>
       <div class="card-footer">

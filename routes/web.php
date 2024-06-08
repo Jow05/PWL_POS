@@ -12,6 +12,8 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ManagerController;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -105,7 +107,7 @@ Route::group(['prefix' => 'barang'], function(){
     Route::delete('/{id}', [BarangController::class, 'destroy']); //menghapus data user
 });
 
-Route::group(['prefix' => 'stock'], function(){
+Route::group(['prefix' => 'stok'], function(){
     Route::get('/', [StockController::class, 'index']);          //menampilkan halaman awal user
     Route::post('/list', [StockController::class, 'list']);      //menampilkan data user dalam bentuk json untuk datatables
     Route::get('/create', [StockController::class, 'create']);   //menampilkan halaman form tambah user
@@ -128,7 +130,7 @@ Route::group(['prefix' => 'transaksi'], function(){
 });
 
 //jobsheet 9
-use App\Http\Controllers\AuthController;
+//use App\Http\Controllers\AuthController;
 
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::get('register', [AuthController::class, 'register'])->name('register');
@@ -154,3 +156,4 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('manager', ManagerController::class);
     });
 });
+

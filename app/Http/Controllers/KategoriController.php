@@ -63,13 +63,13 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category_kode' => 'required|string|max:6|unique:m_category,category_kode',
-            'category_nama' => 'required|string|max:50'
+            'kategori_kode' => 'required|string|max:6|unique:m_kategori,kategori_kode',
+            'kategori_nama' => 'required|string|max:50'
         ]);
 
         KategoriModel::create([
-            'category_kode' => $request->category_kode,
-            'category_nama' => $request->category_nama
+            'kategori_kode' => $request->kategori_kode,
+            'kategori_nama' => $request->kategori_nama
         ]);
 
         return redirect('/kategori')->with('success', 'Data kategori berhasil disimpan');
@@ -95,13 +95,13 @@ class KategoriController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'category_kode' => 'required|string|max:6|unique:m_category,category_kode,'.$id.',category_id',
-            'category_nama' => 'required|string|max:50'
+            'kategori_kode' => 'required|string|max:6|unique:m_kategori,kategori_kode,'.$id.',kategori_id',
+            'kategori_nama' => 'required|string|max:50'
         ]);
 
         KategoriModel::find($id)->update([
-            'category_kode' => $request->category_kode,
-            'category_nama' => $request->category_nama
+            'kategori_kode' => $request->kategori_kode,
+            'kategori_nama' => $request->kategori_nama
         ]);
 
         return redirect('/kategori')->with('success', 'Data kategori berhasil diubah');
@@ -123,18 +123,18 @@ class KategoriController extends Controller
     }
     public function list(Request $request)
     {
-        $kategoris = KategoriModel::select('category_id', 'category_kode', 'category_nama');
+        $kategoris = KategoriModel::select('kategori_id', 'kategori_kode', 'kategori_nama');
 
-        if($request->category_id){
-            $kategoris->where('category_id', $request->category_id);
+        if($request->kategori_id){
+            $kategoris->where('kategori_id', $request->kategori_id);
         }
 
         return DataTables::of($kategoris)
         ->addIndexColumn()
         ->addColumn('aksi', function ($kategori) {
-            $btn = '<a href="'.url('/kategori/' . $kategori->category_id).'" class="btn btn-info btn-sm">Detail</a> ';
-            $btn .= '<a href="' . url('/kategori/' . $kategori->category_id . '/edit' ) . '" class="btn btn-warning btn-sm">Edit</a> ';
-            $btn .= '<form class="d-inline-block" method="POST" action="'. url('/kategori/'.$kategori->category_id).'">'.
+            $btn = '<a href="'.url('/kategori/' . $kategori->kategori_id).'" class="btn btn-info btn-sm">Detail</a> ';
+            $btn .= '<a href="' . url('/kategori/' . $kategori->kategori_id . '/edit' ) . '" class="btn btn-warning btn-sm">Edit</a> ';
+            $btn .= '<form class="d-inline-block" method="POST" action="'. url('/kategori/'.$kategori->kategori_id).'">'.
             csrf_field() . method_field('DELETE') .
             '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakin menghapus data ini?\');">Hapus</button></form>';
             return $btn;
@@ -142,4 +142,27 @@ class KategoriController extends Controller
         ->rawColumns(['aksi']) // memberitahu bahwa kolom aksi adalah html
         ->make(true);
     }
+    //Jobsheet 4
+    // public function index()
+    // {
+        /*$data = [
+            'kategori_kode' => 'SNK',
+            'kategori_nama' => 'Snack/Makanan Ringan',
+            'created_at' => now()
+        ];
+        DB::table('m_kategori')->insert($data);
+        return 'Insert data baru berhasil'; */
+//The m_kategori table will add new data, namely kategori_kode = SNK, kategori_nama = Snack / Snacks, created_at = now / the day the data is inputted.
+//When running the above code, it errors because it cannot add or update child rows with foreign key constraints failed ('pwl_pos', 'm_user', CONSTRAINT 'm_user_level_id_foreign' FOREIGN KEY('level_id') REFERENCE 'm_level'('level_id'))
+
+        // $row = DB::table('m_kategori')->where('kategori_kode', 'SNK')->update(['kategori_nama' => 'Camilan']);
+        // return 'Update data berhasil. Jumlah data yang diupdate: '. $row.' baris';
+//In the m_kategori table, the kategori_name data that was previously Snack / Snacks is updated to snacks.
+
+        // $row = DB::table('m_kategori')->where('kategori_kode', 'SNK')->delete();
+        // return 'Delete data berhasil. Jumlah data yang dihapus '. $row.' baris';
+
+    //     $data = DB::table('m_kategori')->get();
+    //     return view('kategori', ['data' => $data]);
+    // }
 }
