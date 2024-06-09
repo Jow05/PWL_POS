@@ -19,4 +19,5 @@ class TransaksiDetailModel extends Model
     public function barang():BelongsTo {
         return $this->belongsTo(BarangModel::class, 'barang_id', 'barang_id');
     }
+    
 }

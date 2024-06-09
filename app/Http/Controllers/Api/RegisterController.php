@@ -47,4 +47,5 @@ class RegisterController extends Controller
             'success' => false,
         ], 409);
     }
+    
 }

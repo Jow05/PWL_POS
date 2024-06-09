@@ -46,6 +46,7 @@ Route::get('kategoris/{kategori}', [KategoriController::class, 'show']);
 Route::put('kategoris/{kategori}', [KategoriController::class, 'update']);
 Route::delete('kategoris/{kategori}', [KategoriController::class, 'destroy']);
 
+//Assignment
 Route::get('barangs', [BarangController::class, 'index']);
 Route::post('barangs', [BarangController::class, 'store']);
 Route::get('barangs/{barang}', [BarangController::class, 'show']);
