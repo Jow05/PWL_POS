@@ -8,105 +8,82 @@ use Illuminate\Support\Facades\DB;
 
 class BarangSeeder extends Seeder
 {
-   
+    /**
+     * Run the database seeds.
+     */
     public function run(): void
     {
-        $data=[
+        $data = [
             [
-                'barang_id' => 1,
-                'category_id' => 1,
-                'barang_kode' => 'BRG001',
-                'barang_nama' => 'Nasi Kuning',
-                'harga_beli' => 15000,
-                'harga_jual' => 20000,
+
+                'kategori_id' => '3',
+                'barang_kode' => '001',
+                'barang_nama' => 'Gula Pasir',
+                'harga_beli' => '15000',
+                'harga_jual' => '17000'
             ],
             [
-                'barang_id' => 2,
-                'category_id' => 1,
-                'barang_kode' => 'BRG002',
-                'barang_nama' => 'Nasi Lemak',
-                'harga_beli' => 10000,
-                'harga_jual' => 15000,
+                'kategori_id' => '3',
+                'barang_kode' => '002',
+                'barang_nama' => 'Minyak Goreng',
+                'harga_beli' => '14000',
+                'harga_jual' => '16000'
             ],
             [
-                'barang_id' => 3,
-                'category_id' => 2,
-                'barang_kode' => 'BRG003',
-                'barang_nama' => 'Ice Americano',
-                'harga_beli' => 5000,
-                'harga_jual' => 7000,
+                'kategori_id' => '3',
+                'barang_kode' => '003',
+                'barang_nama' => 'Tepung Terigu',
+                'harga_beli' => '10000',
+                'harga_jual' => '11500'
             ],
             [
-                'barang_id' => 4,
-                'category_id' => 2,
-                'barang_kode' => 'BRG004',
-                'barang_nama' => 'Choco latte',
-                'harga_beli' => 6000,
-                'harga_jual' => 8000,
+                'kategori_id' => '1',
+                'barang_kode' => '004',
+                'barang_nama' => 'Telur Ayam',
+                'harga_beli' => '25000',
+                'harga_jual' => '26000'
             ],
             [
-                'barang_id' => 5,
-                'category_id' => 3,
-                'barang_kode' => 'BRG005',
-                'barang_nama' => 'Crackers',
-                'harga_beli' => 3000,
-                'harga_jual' => 5000,
+                'kategori_id' => '3',
+                'barang_kode' => '005',
+                'barang_nama' => 'Kentang',
+                'harga_beli' => '17000',
+                'harga_jual' => '18000'
             ],
             [
-                'barang_id' => 6,
-                'category_id' => 3,
-                'barang_kode' => 'BRG006',
-                'barang_nama' => 'Candy',
-                'harga_beli' => 2000,
-                'harga_jual' => 3000,
+                'kategori_id' => '1',
+                'barang_kode' => '006',
+                'barang_nama' => 'Sereal',
+                'harga_beli' => '20000',
+                'harga_jual' => '22000'
             ],
             [
-                'barang_id' => 7,
-                'category_id' => 4,
-                'barang_kode' => 'BRG007',
-                'barang_nama' => 'Spoon',
-                'harga_beli' => 5000,
-                'harga_jual' => 7000,
+                'kategori_id' => '1',
+                'barang_kode' => '007',
+                'barang_nama' => 'Chitato',
+                'harga_beli' => '28000',
+                'harga_jual' => '30000'
             ],
             [
-                'barang_id' => 8,
-                'category_id' => 4,
-                'barang_kode' => 'BRG008',
-                'barang_nama' => 'Fork',
-                'harga_beli' => 4000,
-                'harga_jual' => 6000,
+                'kategori_id' => '2',
+                'barang_kode' => '008',
+                'barang_nama' => 'Susu Bubuk',
+                'harga_beli' => '40000',
+                'harga_jual' => '42000'
             ],
             [
-                'barang_id' => 9,
-                'category_id' => 5,
-                'barang_kode' => 'BRG009',
-                'barang_nama' => 'Soap',
-                'harga_beli' => 10000,
-                'harga_jual' => 12000,
+                'kategori_id' => '2',
+                'barang_kode' => '009',
+                'barang_nama' => 'Susu UHT',
+                'harga_beli' => '20000',
+                'harga_jual' => '21000'
             ],
             [
-                'barang_id' => 10,
-                'category_id' => 5,
-                'barang_kode' => 'BRG010',
-                'barang_nama' => 'Shampoo',
-                'harga_beli' => 15000,
-                'harga_jual' => 17000,
-            ],
-            [
-                'barang_id' => 11,
-                'category_id' => 5,
-                'barang_kode' => 'BRG010',
-                'barang_nama' => 'Conditioner',
-                'harga_beli' => 15000,
-                'harga_jual' => 17000,
-            ],
-            [
-                'barang_id' => 12,
-                'category_id' => 5,
-                'barang_kode' => 'BRG010',
-                'barang_nama' => 'Face Wash',
-                'harga_beli' => 15000,
-                'harga_jual' => 17000,
+                'kategori_id' => '2',
+                'barang_kode' => '010',
+                'barang_nama' => 'Susus Kental Manis',
+                'harga_beli' => '12000',
+                'harga_jual' => '12000'
             ],
         ];
         DB::table('m_barang')->insert($data);

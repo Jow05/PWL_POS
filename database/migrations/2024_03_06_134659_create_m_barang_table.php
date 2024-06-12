@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('barang_nama', 100);
             $table->integer('harga_beli');
             $table->integer('harga_jual');
-            
+            $table->timestamps();
+
             $table->foreign('category_id')->references('category_id')->on('m_category');
             
-            $table->timestamps();
         });
     }
 
