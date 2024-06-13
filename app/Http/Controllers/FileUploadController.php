@@ -28,6 +28,7 @@ class FileUploadController extends Controller
         // dump($request->berkas);
         // dump($request->file('file'))'
         // return "Pemrosesan file upload di sini";
+        
         $request->validate([
             'berkas'=>'required|file|image|max:500',]);
             $namaFile=$request->berkas->getClientOriginalName();
