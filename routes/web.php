@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\TransaksiController;
-use App\Http\Controllers\FileUpController;
+use App\Http\Controllers\FileUploadController;
 
 
 
@@ -159,6 +159,6 @@ Route::group(['middleware' => ['auth']], function () {
     });
 });
     //jobsheet 12
-    Route::get('/file-upload', [FileUpController::class, 'fileUpload']);
-    Route::post('/file-upload', [FileUpController::class, 'prosesFileUpload']);
+    Route::get('/file-upload', [FileUploadController::class, 'fileUpload']);
+    Route::post('/file-upload', [FileUploadController::class, 'prosesFileUpload']);
 
